@@ -42,47 +42,48 @@ There are two ways to build it
   * [proxy](#proxybin)
 
 
-## main
+## main
 Main directory that contains program logic and testing logic.
 
-#### proxy
+#### proxy
 proxy.go file contains the proxy server logic.
 
-#### proxy_test
+#### proxy_test
 proxy_test.go file contains the test cases.
 
-## mod
+## mod
 go.mod file contains all the external module dependencies.
 
-## Makefile
+## Makefile
 Instructions to build, test and start proxy server.
 
-## build
+## build
 This directory is generated when we build project and contains the binary code.
 
-#### proxybin
+#### proxybin
 proxy is the executable file generated after building the project.
 
-## Design and features
+## Design and features
 Overall design of proxy server is like if a client will send a request to proxy server, it will add a secret key to it and send it to actual server.Receives response and sends it to client.
 
 Some of the design points are listed below-
 
-- Proxy servers port is configurable. If no port is provided, the server will be started on port 8080.
-- Each request from the client is handled by the Handler function.
-- We have given a single API endpoint (/test) of the actual server, so any other endpoint will return 404.
-- If the server URL is provided we can pass all the requests to the actual server.
-- In proxy server create and initialize a request parameter with necessary fields. [host, scheme, path, request URI, client IP and Key]
-- Make a request to the server with this request object.
-- Copy response status code and body of server response to client's response.
-- Copy all headers of server response to client's response.
-- If the server sends streaming data, proxy should flush this data in a regular interval until the complete data is received.
-- If the server sends a trailer, proxy needs to read its key and send it before setting status code, after that pass the trailer values after copying the body. 
+- Proxy servers port is configurable. If no port is provided, the server will be started on port 8080.
+- Each request from the client is handled by the Handler function.
+- We have given a single API endpoint (/test) of the actual server, so any other endpoint will return 404.
+- If the server URL is provided we can pass all the requests to the actual server.
+- In proxy server create and initialize a request parameter with necessary fields. [host, scheme, path, request URI, client IP and Key]
+- Make a request to the server with this request object.
+- Copy response status code and body of server response to client's response.
+- Copy all headers of server response to client's response.
+- If the server sends streaming data, proxy should flush this data in a regular interval until the complete data is received.
+- If the server sends a trailer, proxy needs to read its key and send it before setting status code, after that pass the trailer values after copying the body.
 
 
-## Limitations/Improvements
+## Limitations / Improvements
 - Secret key is hard coded in logic. This is not a good practice. We should store the Key in the environment file.
-- We can provide a caching layer with this proxy server to lower the load of the server.- We can use secure HTTP between client and proxy server to make requests more secure.
+- We can provide a caching layer with this proxy server to lower the load of the server.
+- We can use secure HTTP between client and proxy server to make requests more secure.
 
 <!-- LICENSE -->
 ## License
@@ -95,3 +96,5 @@ Distributed under the MIT License.
 Name: Dinesh Dev Pandey
 
 LinkedIn : [https://www.linkedin.com/in/dinesh-dev-pandey-51317229]
+
+Project Link: [https://github.com/DineshDevPandey/Golang-Proxy-Server](https://github.com/DineshDevPandey/Golang-Proxy-Server.git)
