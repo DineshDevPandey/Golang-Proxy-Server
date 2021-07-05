@@ -80,6 +80,23 @@ Some of the design points are listed below-
 - If the server sends a trailer, proxy needs to read its key and send it before setting status code, after that pass the trailer values after copying the body.
 
 
+## TestCases
+There are two main functions. Following test cases have been added -
+**Handler Function**
+
+- test endpoint check                     : Test to check /test URL returns correct response 
+- other endpoint check                    : Test to check other endpoints returns 404
+- empty server URL check                  : Test to check empty server address/url returns 500
+- remoteAddr without port check           : Test to check remoteAddr(without port) returns 500 
+- response header secret KEY/VALUE check  : Test to check proxy response contains added secret KEY and VALUE
+
+**Port Function**
+
+- user defined port                       : Test for check it returns correct port provided by user 
+- default port                            : Test for check it returns default port if user doesn't provide port 
+- non integer port                        : Test for check it returns default port if user provides non numeric port 
+
+
 ## Limitations / Improvements
 - Secret key is hard coded in logic. This is not a good practice. We should store the Key in the environment file.
 - We can provide a caching layer with this proxy server to lower the load of the server.

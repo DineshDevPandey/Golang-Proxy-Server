@@ -28,10 +28,10 @@ func TestHandler(t *testing.T) {
 		statusCode int
 		serverURL  string
 	}{
-		{"test URL check", "GET", "http://127.0.0.1:3000/test", "127.0.0.1:56192", arg.key, arg.value, http.StatusOK, arg.serverURL},
+		{"test endpoint check", "GET", "http://127.0.0.1:3000/test", "127.0.0.1:56192", arg.key, arg.value, http.StatusOK, arg.serverURL},
 		{"empty server URL check", "GET", "http://127.0.0.1:3000/test", "127.0.0.1:56192", arg.key, arg.value, http.StatusOK, ""},
-		{"without port remoteAddr check", "GET", "http://127.0.0.1:3000/test", "127.0.0.1", "", "", http.StatusInternalServerError, arg.serverURL},
-		{"other URL check", "GET", "http://127.0.0.1:3000/test1", "127.0.0.1:56192", "", "", http.StatusNotFound, arg.serverURL},
+		{"remoteAddr without port check", "GET", "http://127.0.0.1:3000/test", "127.0.0.1", "", "", http.StatusInternalServerError, arg.serverURL},
+		{"other endpoint check", "GET", "http://127.0.0.1:3000/test1", "127.0.0.1:56192", "", "", http.StatusNotFound, arg.serverURL},
 		{"response header secret KEY/VALUE check", "GET", "http://127.0.0.1:3000/test", "127.0.0.1:56192", arg.key, arg.value, http.StatusOK, arg.serverURL},
 	}
 
